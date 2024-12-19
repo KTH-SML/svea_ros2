@@ -13,4 +13,4 @@ pyubx2
 geopy
 utm
 # This is for NMPC
-casadi==3.5.5
+casadi>=3.6.0,<4.0.0

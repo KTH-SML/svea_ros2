@@ -13,12 +13,12 @@ main() {
 
     withdefault DEBUG "0"
 
-    withdefault ROSDISTRO       "noetic"
+    withdefault ROSDISTRO       "jazzy"
     withdefault WORKSPACE       "/svea_ws"
     withdefault REPOSITORY_PATH "$(climb entrypoint)"
     withdefault REPOSITORY_NAME "$(basename "$REPOSITORY_PATH")"
+    withdefault BUILD_CONFIG    "base"
 
-    withdefault BUILD_CONFIG    "default"
     if [ "$BUILD_CONFIG" = "default" ]; then
         # building for host platform
         withdefault BUILD_PLATFORM  "$(uname -m)"
@@ -32,8 +32,8 @@ main() {
         withdefault BUILD_PLATFORM  "$(uname -m)"
         withdefault BUILD_CONTEXT   "$REPOSITORY_PATH"
         withdefault BUILD_FILE      "docker/Dockerfile.base"
-        withdefault BUILD_TAG       "ros:$ROSDISTRO"
-        withdefault IMAGE_TAG       "ghcr.io/kth-sml/svea:latest"
+        withdefault BUILD_TAG       "osrf/ros:${ROSDISTRO}-desktop"
+        withdefault IMAGE_TAG       "ghcr.io/kth-sml/svea-base:${ROSDISTRO}"
         withdefault IMAGE_PUSH      "0"
     elif [ "$BUILD_CONFIG" = "base-amd64" ]; then
         # building for x86_64
