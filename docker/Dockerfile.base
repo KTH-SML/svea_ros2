@@ -38,11 +38,6 @@ RUN apt-get update -y && apt-get upgrade -y && \
         python3-rosdep && \
     rm -rf /var/lib/apt/lists/*
 
-
-# Initialize rosdep for resolving dependencies
-RUN rosdep init || echo "rosdep already initialized"
-RUN rosdep update --rosdistro $ROSDISTRO
-
 # Create the SVEA workspace
 WORKDIR $WORKSPACE
 
